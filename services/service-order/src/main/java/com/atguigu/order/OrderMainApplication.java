@@ -32,7 +32,7 @@ public class OrderMainApplication {
      */
     @Bean
     ApplicationRunner applicationRunner(NacosConfigManager nacosConfigManager) {
-        return (args -> {
+        return args -> {
             ConfigService configService = nacosConfigManager.getConfigService();
             configService.addListener("service-order.properties",
                     "DEFAULT_GROUP",
@@ -49,6 +49,6 @@ public class OrderMainApplication {
                         }
                     });
             System.out.println("监听中");
-        });
+        };
     }
 }

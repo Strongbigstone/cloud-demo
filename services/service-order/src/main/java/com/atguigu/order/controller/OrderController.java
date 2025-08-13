@@ -28,7 +28,7 @@ public class OrderController {
 
     @GetMapping("/config")
     public String createOrder() {
-        return String.format("超时时间：%s, 自动确认：%s, 数据库地址%s",
+        return String.format("超时时间：%s, 自动确认：%s, 数据库地址：%s",
                 orderProperties.getTimeout(),
                 orderProperties.getAutoConfirm(),
                 orderProperties.getDbUrl());

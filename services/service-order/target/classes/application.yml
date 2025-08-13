@@ -2,7 +2,7 @@ server:
   port: 8000
 spring:
   profiles:
-    active: test
+    active: dev
     include: feign
   application:
     name: service-order
@@ -10,7 +10,7 @@ spring:
     nacos:
       server-addr: 127.0.0.1:8848
       config:
-        namespace: ${spring.profiles.active:public}
+        namespace: ${spring.profiles.active:dev}
 
 
 logging:
@@ -23,6 +23,7 @@ spring:
     import:
       - nacos:common.properties?group=order
       - nacos:database.properties?group=order
+      - nacos:service-order.yml?group=order
     activate:
       on-profile: dev
 
