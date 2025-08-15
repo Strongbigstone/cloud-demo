@@ -11,5 +11,5 @@ public interface ProductFeignClient {
     //getMapping标注在controller上是接受类型
     //getMapping标注在feign客户端是以get请求发送
     @GetMapping("/product/{id}")
-    Product getProductById(@PathVariable("id") Long id);
+    Product getProductById(@PathVariable("id") String id);
 }

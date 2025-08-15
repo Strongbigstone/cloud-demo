@@ -2,15 +2,16 @@ package com.atguigu.order.controller;
 
 
 import com.atguigu.Order;
+import com.atguigu.order.mapper.secondary.SecondaryOrderMapper;
 import com.atguigu.order.properies.OrderProperties;
 import com.atguigu.order.service.OrderService;
+import com.atguigu.order.service.impl.SecondaryOrderServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@RequestMapping("/order")
 //@RefreshScope//自动刷新
 @RestController
 public class OrderController {
@@ -24,7 +25,7 @@ public class OrderController {
     OrderProperties orderProperties;
 
     @Resource
-    OrderService orderService;
+    SecondaryOrderServiceImpl orderService;
 
     @GetMapping("/config")
     public String createOrder() {
@@ -35,8 +36,13 @@ public class OrderController {
     }
 
     @GetMapping("/create")
-    public Order createOrder(@RequestParam("userId") Long userId,
-                             @RequestParam("productId") Long productId) {
+    public Order createOrder(@RequestParam("userId") String userId,
+                             @RequestParam("productId") String productId) {
         return orderService.createOrder(productId, userId);
+    }
+
+    @GetMapping("/query/{orderId}")
+    public Order queryOrder(@PathVariable("orderId") String orderId) {
+        return orderService.queryOrder(orderId);
     }
 }

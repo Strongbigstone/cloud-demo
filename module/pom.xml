@@ -23,6 +23,18 @@
             <artifactId>lombok</artifactId>
             <scope>annotationProcessor</scope>
         </dependency>
+        <!-- MyBatis-Plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.6</version> <!-- 使用与Spring Boot 3兼容的版本 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mybatis</groupId>
+                    <artifactId>mybatis-spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
 </project>

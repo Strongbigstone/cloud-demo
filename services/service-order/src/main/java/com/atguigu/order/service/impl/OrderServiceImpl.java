@@ -1,12 +1,11 @@
 package com.atguigu.order.service.impl;
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.List;
 
 import com.atguigu.Order;
 import com.atguigu.Product;
 import com.atguigu.order.feign.ProductFeignClient;
+import com.atguigu.order.mapper.primary.OrderMapper;
 import com.atguigu.order.service.OrderService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -15,9 +14,13 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
+
 @Slf4j
 @Service
-public class OrderServiceImpl implements OrderService {
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
     @Resource
     RestTemplate restTemplate;
     @Resource
@@ -28,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     ProductFeignClient productFeignClient;
 
     @Override
-    public Order createOrder(Long productId, Long userId) {
+    public Order createOrder(String productId, String userId) {
         Order order = new Order();
         order.setId(productId);
         Product remoteProduct = productFeignClient.getProductById(productId);
@@ -40,6 +43,11 @@ public class OrderServiceImpl implements OrderService {
         order.setProductList(Collections.singletonList(remoteProduct));
 
         return order;
+    }
+
+    @Override
+    public Order queryOrder(String orderId) {
+        return getById(orderId);
     }
 
     //负载均衡调用 1

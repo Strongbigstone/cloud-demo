@@ -10,6 +10,9 @@ spring:
     nacos:
       server-addr: 127.0.0.1:8848
       config:
+        import-check:
+          #导入检查禁用
+          enabled: false
         namespace: ${spring.profiles.active:dev}
 
 

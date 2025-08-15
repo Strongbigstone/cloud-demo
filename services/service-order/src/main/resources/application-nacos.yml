@@ -1,0 +1,30 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /servies-order
+
+spring:
+  application:
+    name: servies-order
+
+  datasource:
+    primary:
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/db?currentSchema=order
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        pool-name: HikariCP-Primary
+
+    secondary:
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/postgres?currentSchema=order
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        pool-name: HikariCP-Secondary
+
+logging:
+  level:
+    org.mybatis: DEBUG
+    com.baomidou: DEBUG
