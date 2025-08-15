@@ -1,6 +1,7 @@
 package com.atguigu.order.config;
 
 import com.atguigu.order.interceptor.LoginInterceptor;
+import jakarta.annotation.Nonnull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,7 +16,7 @@ public class RegistryConfig implements WebMvcConfigurer {
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(@Nonnull InterceptorRegistry registry) {
         WebMvcConfigurer.super.addInterceptors(registry);
         registry.addInterceptor(loginInterceptor())
                 .addPathPatterns("/**")

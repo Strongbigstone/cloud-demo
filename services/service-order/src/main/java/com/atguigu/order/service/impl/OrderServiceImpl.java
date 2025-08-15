@@ -3,8 +3,9 @@ package com.atguigu.order.service.impl;
 import com.atguigu.Order;
 import com.atguigu.Product;
 import com.atguigu.order.feign.ProductFeignClient;
-import com.atguigu.order.mapper.primary.OrderMapper;
+import com.atguigu.order.mapper.primary.PrimaryOrderMapper;
 import com.atguigu.order.service.OrderService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
+public class OrderServiceImpl extends ServiceImpl<PrimaryOrderMapper, Order> implements OrderService {
     @Resource
     RestTemplate restTemplate;
     @Resource
@@ -73,5 +74,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         //http://localhost:8001/product/4
         String url = "http://"+ serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/product/" + productId;
         return restTemplate.getForObject(url, Product.class);
+    }
+
+    public List<Order> queryAll() {
+        return baseMapper.selectList(new Page<>(1, 11), null);
     }
 }

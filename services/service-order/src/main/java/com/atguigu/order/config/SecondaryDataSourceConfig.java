@@ -13,7 +13,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -39,9 +38,7 @@ public class SecondaryDataSourceConfig {
                                                         MybatisPlusInterceptor mybatisPlusInterceptor) throws Exception {
         MybatisSqlSessionFactoryBean sessionFactory = new MybatisSqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        PathMatchingResourcePatternResolver patternResolver = new PathMatchingResourcePatternResolver();
-        Resource[] resources = patternResolver.getResources("classpath:mapper/secondary/**/*.xml");
-        sessionFactory.setMapperLocations(resources);
+        sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/secondary/**/*.xml"));
         sessionFactory.setPlugins(mybatisPlusInterceptor);
 
         // 添加 MyBatis-Plus 拦截器

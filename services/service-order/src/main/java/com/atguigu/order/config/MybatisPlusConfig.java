@@ -19,7 +19,7 @@ public class MybatisPlusConfig {
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.POSTGRE_SQL);
-        paginationInnerInterceptor.setMaxLimit(1000L);
+        paginationInnerInterceptor.setMaxLimit(5L);
         interceptor.addInnerInterceptor(paginationInnerInterceptor);
 
         // 2. 防止全表更新插件

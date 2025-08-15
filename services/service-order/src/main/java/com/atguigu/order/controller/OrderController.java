@@ -2,14 +2,12 @@ package com.atguigu.order.controller;
 
 
 import com.atguigu.Order;
-import com.atguigu.order.mapper.secondary.SecondaryOrderMapper;
 import com.atguigu.order.properies.OrderProperties;
 import com.atguigu.order.service.OrderService;
-import com.atguigu.order.service.impl.SecondaryOrderServiceImpl;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/order")
 //@RefreshScope//自动刷新
@@ -25,7 +23,7 @@ public class OrderController {
     OrderProperties orderProperties;
 
     @Resource
-    SecondaryOrderServiceImpl orderService;
+    OrderService orderService;
 
     @GetMapping("/config")
     public String createOrder() {
@@ -44,5 +42,10 @@ public class OrderController {
     @GetMapping("/query/{orderId}")
     public Order queryOrder(@PathVariable("orderId") String orderId) {
         return orderService.queryOrder(orderId);
+    }
+
+    @GetMapping("/queryAll")
+    public List<Order> queryAllOrder() {
+        return orderService.queryAll();
     }
 }

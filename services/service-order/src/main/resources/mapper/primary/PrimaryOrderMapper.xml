@@ -6,7 +6,7 @@
 2. 该文件可以去实现对应的接口的方法
 3. namespace 指定该xml文件和哪个接口对应!!!
 -->
-<mapper namespace="com.atguigu.order.mapper.primary.OrderMapper">
+<mapper namespace="com.atguigu.order.mapper.primary.PrimaryOrderMapper">
 
     <select id="queryList" parameterType="com.atguigu.Order" resultType="com.atguigu.Order">
 
