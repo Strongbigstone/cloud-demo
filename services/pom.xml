@@ -88,10 +88,31 @@
             <version>5.8.0</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.github.pagehelper</groupId>-->
-<!--            <artifactId>pagehelper</artifactId>-->
-<!--            <version>5.3.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+
+        <!-- Spring AOP支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>6.1.13</version>
+        </dependency>
+
+            <!-- 添加 AspectJ 事务管理依赖 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aspects</artifactId>
+                <version>6.1.13</version>
+            </dependency>
+
+            <!-- 可选：添加 AspectJ Weaver 依赖 -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.9.22</version>
+            </dependency>
     </dependencies>
 </project>

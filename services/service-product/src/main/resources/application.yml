@@ -1,0 +1,44 @@
+server:
+  port: 9000
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: service-product
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false
+        server-addr: 127.0.0.1
+        namespace: ${spring.profiles.active:public}
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+---
+spring:
+  config:
+    import:
+      - nacos:service-product.yml?group=product
+      - nacos:common.yml?group=product
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    import:
+      - nacos:service-product.yml?group=product
+      - nacos:common.yml?group=product
+    activate:
+      on-profile: test
+
+---
+spring:
+  config:
+    import:
+      - nacos:service-product.yml?group=product
+      - nacos:common.yml?group=product
+    activate:
+      on-profile: prod

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--解读
+1. 这是一个mapper xml 文件
+2. 该文件可以去实现对应的接口的方法
+3. namespace 指定该xml文件和哪个接口对应!!!
+-->
+<mapper namespace="com.example.product.mapper.ProductMapper">
+
+    <select id="queryList" parameterType="com.atguigu.Product" resultType="com.atguigu.Product">
+
+    </select>
+</mapper>
